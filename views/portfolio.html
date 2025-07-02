@@ -1,0 +1,78 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Portofolii</h2>
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-success" id="addPortfolioBtn">Adaugă Portofoliu</button>
+    </div>
+  
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-sm align-middle text-nowrap">
+            <thead class="table-light">
+              <tr>
+                <th>UBO</th>
+                <th>Instrument</th>
+                <th>Data</th>
+                <th>Cost</th>
+                <th>Valoare</th>
+                <th>Cantitate</th>
+                <th>Dobândă acumulată</th>
+                <th class="text-end">Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="portfoliosTableBody">
+              <tr><td colspan="8" class="text-center">Se încarcă...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between mt-3" id="portfolioPagination"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Portfolio -->
+  <div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="portfolioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="portfolioForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="portfolioModalLabel">Portofoliu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="ubo" class="form-label">UBO</label>
+              <select class="form-select" id="ubo" required></select>
+            </div>
+            <div class="mb-3">
+              <label for="instrument" class="form-label">Instrument</label>
+              <select class="form-select" id="instrument" required></select>
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Data</label>
+              <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="mb-3">
+              <label for="cost" class="form-label">Cost</label>
+              <input type="number" step="0.01" class="form-control" id="cost" required>
+            </div>
+            <div class="mb-3">
+              <label for="value" class="form-label">Valoare</label>
+              <input type="number" step="0.01" class="form-control" id="value" required>
+            </div>
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Cantitate</label>
+              <input type="number" step="0.01" class="form-control" id="quantity" required>
+            </div>
+            <div class="mb-3">
+              <label for="accruedint" class="form-label">Dobândă acumulată</label>
+              <input type="number" step="0.01" class="form-control" id="accruedint">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Salvează</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

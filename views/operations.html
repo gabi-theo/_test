@@ -1,0 +1,82 @@
+<div class="container mt-4">
+    <h2>Operațiuni</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button id="addOperationBtn" class="btn btn-success">Adaugă Operațiune</button>
+    </div>
+  
+    <input id="searchOperationInput" class="form-control mb-3" placeholder="Caută operațiuni...">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cod</th>
+          <th>Nume</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Acțiuni</th>
+        </tr>
+      </thead>
+      <tbody id="operationTableBody"></tbody>
+    </table>
+    <div id="paginationControls" class="d-flex justify-content-between mt-3"></div>
+  </div>
+  
+  <!-- Modal pentru operațiune -->
+  <div class="modal fade" id="operationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form id="operationForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Operațiune</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body row g-3">
+            <div class="col-md-6">
+              <label for="operation_code" class="form-label">Cod Operațiune</label>
+              <input type="text" class="form-control" id="operation_code" required>
+            </div>
+            <div class="col-md-6">
+              <label for="operation_name" class="form-label">Nume Operațiune</label>
+              <input type="text" class="form-control" id="operation_name">
+            </div>
+            <div class="col-md-6">
+              <label for="debit" class="form-label">Cont Debit</label>
+              <select id="debit" class="form-select" required></select>
+              <button type="button" class="btn btn-link p-0" id="addDebitAccountBtn">Adaugă cont nou</button>
+            </div>
+            <div class="col-md-6">
+              <label for="credit" class="form-label">Cont Credit</label>
+              <select id="credit" class="form-select" required></select>
+              <button type="button" class="btn btn-link p-0" id="addCreditAccountBtn">Adaugă cont nou</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Salvează</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal pentru cont nou -->
+  <div class="modal fade" id="accountModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="accountForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Cont Nou</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <label for="account_code" class="form-label">Cod Cont</label>
+            <input type="text" id="account_code" class="form-control" required>
+            <label for="account_name" class="form-label mt-2">Nume Cont</label>
+            <input type="text" id="account_name" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Salvează Cont</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

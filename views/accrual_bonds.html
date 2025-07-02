@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Dobânzi Obligațiuni</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+    <div class="input-group w-50">
+      <input type="text" class="form-control" id="bondSearchInput" placeholder="Caută...">
+      <button class="btn btn-outline-secondary" id="bondSearchBtn">Caută</button>
+    </div>
+    <div>
+      <button class="btn btn-outline-primary me-2" id="generateBondAccrualsBtn">Generează Accruals</button>
+      <button class="btn btn-outline-success" id="exportBondCsvBtn">Exportă CSV</button>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-sm align-middle text-nowrap">
+          <thead class="table-light">
+            <tr>
+              <th>UBO</th>
+              <th>Custodian</th>
+              <th>Partener</th>
+              <th>Cont</th>
+              <th>Instrument</th>
+              <th>Valută</th>
+              <th>Data</th>
+              <th>Operațiune</th>
+              <th>Detalii</th>
+              <th>Prioritate</th>
+              <th>Cantitate</th>
+              <th>Total Cantitate</th>
+              <th>Valoare</th>
+              <th>Total Dobândă</th>
+              <th>Dobândă</th>
+              <th>Dobândă Valută</th>
+              <th>Dobândă RON</th>
+              <th>Total Dobândă Valută</th>
+              <th>Total Dobândă RON</th>
+              <th>Reevaluare Total</th>
+              <th>Total Dif. FX</th>
+              <th>Dif. FX</th>
+              <th>BNR</th>
+              <th>BNR EOM</th>
+              <th>Cupon încasat</th>
+              <th>Dobândă Settle</th>
+              <th>Incremental</th>
+              <th class="text-end">Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody id="bondAccrualsTableBody">
+            <tr><td colspan="28" class="text-center">Se încarcă...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-between mt-3" id="bondPagination"></div>
+    </div>
+  </div>
+</div>

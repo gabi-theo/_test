@@ -1,0 +1,77 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Depozite</h5>
+      <div class="input-group w-50">
+        <input type="text" id="searchDepositInput" class="form-control" placeholder="Caută după instrument">
+        <button class="btn btn-primary" id="addDepositBtn">Adaugă depozit</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Instrument</th>
+            <th>Principal</th>
+            <th>Rată</th>
+            <th>Start</th>
+            <th>Maturitate</th>
+            <th>Detalii</th>
+            <th>Acțiuni</th>
+          </tr>
+        </thead>
+        <tbody id="depositTableBody"></tbody>
+      </table>
+      <div id="paginationControls" class="d-flex justify-content-between mt-3"></div>
+    </div>
+  </div>
+  
+  <!-- Modal depozit -->
+  <div class="modal fade" id="depositModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <form id="depositForm" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Depozit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <div class="col-md-6">
+            <label for="depositInstrument" class="form-label">Instrument</label>
+            <select id="depositInstrument" class="form-select" required></select>
+          </div>
+          <div class="col-md-6">
+            <label for="principal" class="form-label">Principal</label>
+            <input type="number" step="0.01" id="principal" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="interest_rate" class="form-label">Rată dobândă</label>
+            <input type="number" step="0.01" id="interest_rate" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="start" class="form-label">Data start</label>
+            <input type="date" id="start" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="maturity" class="form-label">Maturitate</label>
+            <input type="date" id="maturity" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="convention" class="form-label">Convenție</label>
+            <select id="convention" class="form-select" required>
+              <option value="">-- Selectează --</option>
+              <option value="360">360</option>
+              <option value="365">365</option>
+              <option value="ACT/ACT">ACT/ACT</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="details" class="form-label">Detalii</label>
+            <input type="text" id="details" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Salvează</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+        </div>
+      </form>
+    </div>
+  </div>

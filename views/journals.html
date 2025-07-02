@@ -1,0 +1,173 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Jurnale Tranzacții</h2>
+    <div class="row mb-3 align-items-end">
+      <div class="col-md-4">
+        <label for="searchInput" class="form-label">Caută</label>
+        <input type="text" id="searchInput" class="form-control" placeholder="Caută...">
+      </div>
+    
+      <div class="col-md-3">
+        <label for="dateFrom" class="form-label">De la data</label>
+        <input type="date" id="dateFrom" class="form-control">
+      </div>
+    
+      <div class="col-md-3">
+        <label for="dateTo" class="form-label">Până la data</label>
+        <input type="date" id="dateTo" class="form-control">
+      </div>
+    
+      <div class="col-md-2 d-flex align-items-end">
+        <button class="btn btn-success w-100" id="addJournalBtn">Adaugă jurnal</button>
+      </div>
+    </div>
+
+  <div class="row mb-3 align-items-end">
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-outline-primary w-100 me-1" id="exportExcelBtn">Exportă Excel</button>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-outline-primary w-100 me-1" id="exportDbfBtn">Exportă DBF</button>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-outline-primary w-100 me-1" id="fetchIbkrBtn">Importă Jurnal IBKR</button>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-outline-primary w-100 me-1" id="fetchTdvBtn">Importă Jurnal TDV</button>
+    </div>      
+  </div>
+
+  <!-- Modal for selecting import date -->
+  <div class="modal fade" id="importDateModal" tabindex="-1" aria-labelledby="importDateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="importDateModalLabel">Selectează data pentru import</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+          <input type="date" id="importDate" class="form-control" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          <button type="button" class="btn btn-primary" id="confirmImportBtn">Importă</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-sm align-middle text-nowrap">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="date">Data<span class="sort-icon" data-field="date"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="transactionid">Tranzacție<span class="sort-icon" data-field="transactionid"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="ubo__ubo_code">UBO<span class="sort-icon" data-field="ubo__ubo_code"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="custodian__custodian_code">Custodian<span class="sort-icon" data-field="custodian__custodian_code"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="account__account_code">Cont<span class="sort-icon" data-field="account__account_code"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="operation__operation_code">Operațiune<span class="sort-icon" data-field="operation__operation_code"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="partner__partner_code">Partener<span class="sort-icon" data-field="partner__partner_code"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="instrument__symbol">Instrument<span class="sort-icon" data-field="instrument__symbol"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="instrument__currency__currency_code">Monedă<span class="sort-icon" data-field="instrument__currency__currency_code"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="quantity">Cantitate<span class="sort-icon" data-field="quantity"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="details">Detalii<span class="sort-icon" data-field="details"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="value">Valoare<span class="sort-icon" data-field="value"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="value_ron">Valoare RON<span class="sort-icon" data-field="value_ron"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="bnr">BNR<span class="sort-icon" data-field="bnr"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="storno">Storno<span class="sort-icon" data-field="storno"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="lock">Blocat<span class="sort-icon" data-field="lock"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="debit_analitic">Cont Debit<span class="sort-icon" data-field="debit_analitic"></span></a></th>
+                <th><a href="#" class="sort-link text-dark text-decoration-none" data-sort="credit_analitic">Cont Credit<span class="sort-icon" data-field="credit_analitic"></span></a></th>
+                <th class="text-end">Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="journalsTableBody">
+              <tr><td colspan="20" class="text-center">Se încarcă...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap gap-2 mt-3" id="pagination"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal form -->
+  <div class="modal fade" id="journalModal" tabindex="-1" aria-labelledby="journalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form id="journalForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="journalModalLabel">Adaugă/Editează Jurnal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+          </div>
+          <div class="modal-body row g-3">
+            <div class="col-md-6">
+              <label for="date" class="form-label">Data</label>
+              <input type="date" class="form-control" name="date" id="date" required>
+            </div>
+            <div class="col-md-6">
+              <label for="transactionid" class="form-label">ID Tranzacție</label>
+              <input type="text" class="form-control" name="transactionid" id="transactionid" required>
+            </div>
+            <div class="col-md-6">
+              <label for="custodian" class="form-label">Custodian</label>
+              <select class="form-select" name="custodian" id="custodian" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="account" class="form-label">Cont</label>
+              <select class="form-select" name="account" id="account" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="operation" class="form-label">Operațiune</label>
+              <select class="form-select" name="operation" id="operation" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="partner" class="form-label">Partener</label>
+              <select class="form-select" name="partner" id="partner" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="instrument" class="form-label">Instrument</label>
+              <select class="form-select" name="instrument" id="instrument" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="value" class="form-label">Valoare</label>
+              <input type="number" step="any" class="form-control" name="value" id="value" required>
+            </div>
+            <div class="col-md-6">
+              <label for="value_ron" class="form-label">Valoare RON</label>
+              <input type="number" step="any" class="form-control" name="value_ron" id="value_ron">
+            </div>
+            <div class="col-md-6">
+              <label for="bnr" class="form-label">Curs BNR</label>
+              <input type="number" step="any" class="form-control" name="bnr" id="bnr">
+            </div>
+            <div class="col-md-6">
+              <label for="quantity" class="form-label">Cantitate</label>
+              <input type="number" step="any" class="form-control" name="quantity" id="quantity" required>
+            </div>
+            <div class="col-md-12">
+              <label for="details" class="form-label">Detalii</label>
+              <input type="text" class="form-control" name="details" id="details">
+            </div>
+            <div class="col-md-6">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="storno" id="storno">
+                <label class="form-check-label" for="storno">Storno</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="lock" id="lock">
+                <label class="form-check-label" for="lock">Blocat</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="submitJournalBtn">Salvează</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

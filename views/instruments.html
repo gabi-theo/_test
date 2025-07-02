@@ -1,0 +1,166 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Instrumente</h2>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" id="addInstrumentBtn">Adaugă Instrument</button>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <!-- Filters -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <input type="text" id="searchInput" class="form-control" placeholder="Caută după symbol, ISIN, name...">
+        </div>
+        <div class="col-md-3">
+          <select id="filterCustodian" class="form-select">
+            <option value="">-- Filtru custodian --</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select id="filterCurrency" class="form-select">
+            <option value="">-- Filtru monedă --</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-outline-secondary w-100" id="clearFiltersBtn">Resetează</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-sm align-middle text-nowrap">
+          <thead class="table-light">
+            <tr>
+              <th>Symbol</th>
+              <th>ISIN</th>
+              <th>Custodian</th>
+              <th>Currency</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Principal</th>
+              <th>Face Value</th>
+              <th>Interest</th>
+              <th>Depo Start</th>
+              <th>Bond Issue</th>
+              <th>First Coupon</th>
+              <th>Maturity</th>
+              <th>Convention</th>
+              <th>Calendar</th>
+              <th>Coupon Count</th>
+              <th>Sector</th>
+              <th>Country</th>
+              <th>Needs Check</th>
+              <th class="text-end">Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody id="instrumentsTableBody">
+            <tr><td colspan="20" class="text-center">Se încarcă...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="paginationControls" class="d-flex justify-content-between mt-3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Instrument -->
+<div class="modal fade" id="instrumentModal" tabindex="-1" aria-labelledby="instrumentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form id="instrumentForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="instrumentModalLabel">Instrument</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <!-- Each form input -->
+            <div class="col-md-6">
+              <label for="symbol" class="form-label">Symbol</label>
+              <input type="text" class="form-control" id="symbol" required>
+            </div>
+            <div class="col-md-6">
+              <label for="isin" class="form-label">ISIN</label>
+              <input type="text" class="form-control" id="isin" required>
+            </div>
+            <div class="col-md-6">
+              <label for="custodian" class="form-label">Custodian</label>
+              <select class="form-select" id="custodian" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="currency" class="form-label">Currency</label>
+              <select class="form-select" id="currency" required></select>
+            </div>
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name">
+            </div>
+            <div class="col-md-6">
+              <label for="type" class="form-label">Type</label>
+              <input type="text" class="form-control" id="type">
+            </div>
+            <div class="col-md-6">
+              <label for="principal" class="form-label">Principal</label>
+              <input type="number" step="any" class="form-control" id="principal">
+            </div>
+            <div class="col-md-6">
+              <label for="face_value" class="form-label">Face Value</label>
+              <input type="number" step="any" class="form-control" id="face_value">
+            </div>
+            <div class="col-md-6">
+              <label for="interest" class="form-label">Interest</label>
+              <input type="number" step="any" class="form-control" id="interest">
+            </div>
+            <div class="col-md-6">
+              <label for="depo_start" class="form-label">Depo Start</label>
+              <input type="date" class="form-control" id="depo_start">
+            </div>
+            <div class="col-md-6">
+              <label for="bond_issue" class="form-label">Bond Issue</label>
+              <input type="date" class="form-control" id="bond_issue">
+            </div>
+            <div class="col-md-6">
+              <label for="bond_first_coupon" class="form-label">First Coupon</label>
+              <input type="date" class="form-control" id="bond_first_coupon">
+            </div>
+            <div class="col-md-6">
+              <label for="maturity" class="form-label">Maturity</label>
+              <input type="date" class="form-control" id="maturity">
+            </div>
+            <div class="col-md-6">
+              <label for="convention" class="form-label">Convention</label>
+              <input type="text" class="form-control" id="convention">
+            </div>
+            <div class="col-md-6">
+              <label for="calendar" class="form-label">Calendar</label>
+              <input type="text" class="form-control" id="calendar">
+            </div>
+            <div class="col-md-6">
+              <label for="bond_coupon_count" class="form-label">Coupon Count</label>
+              <input type="number" class="form-control" id="bond_coupon_count">
+            </div>
+            <div class="col-md-6">
+              <label for="sector" class="form-label">Sector</label>
+              <input type="text" class="form-control" id="sector">
+            </div>
+            <div class="col-md-6">
+              <label for="country" class="form-label">Country</label>
+              <input type="text" class="form-control" id="country">
+            </div>
+            <div class="col-md-6">
+              <label for="needs_to_be_checked" class="form-label">Needs Check?</label>
+              <select class="form-select" id="needs_to_be_checked">
+                <option value="false">Nu</option>
+                <option value="true">Da</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Salvează</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

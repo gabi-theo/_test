@@ -1,0 +1,121 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Parteneri</h2>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" id="addPartnerBtn">Adaugă Partener</button>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-sm align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Cod</th>
+              <th>Tip</th>
+              <th>Cod Tip</th>
+              <th>Cod Jurnal</th>
+              <th>Nume</th>
+              <th class="text-end">Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody id="partnersTableBody">
+            <tr><td colspan="6" class="text-center">Se încarcă...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <h3 class="mb-3">Tipuri Parteneri</h3>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" id="addPartnerTypeBtn">Adaugă Tip Partener</button>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-sm align-middle text-nowrap">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Cod Tip</th>
+              <th>Cod Jurnal</th>
+              <th class="text-end">Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody id="partnerTypesTableBody">
+            <tr><td colspan="4" class="text-center">Se încarcă...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Partner -->
+<div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="partnerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="partnerForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="partnerModalLabel">Partener</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="partner_code" class="form-label">Cod</label>
+            <input type="text" class="form-control" name="partner_code" id="partner_code" required>
+          </div>
+          <div class="mb-3">
+            <label for="partner_type" class="form-label">Tip Partener</label>
+            <select class="form-select" name="partner_type" id="partner_type" required></select>
+          </div>
+          <div class="mb-3">
+            <label for="partner_name" class="form-label">Nume</label>
+            <input type="text" class="form-control" name="partner_name" id="partner_name">
+          </div>
+          <div class="mb-3">
+            <label for="partner_type_code_display" class="form-label">Cod Tip</label>
+            <input type="text" class="form-control" id="partner_type_code_display" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="journal_code_display" class="form-label">Cod Jurnal</label>
+            <input type="text" class="form-control" id="journal_code_display" disabled>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="submitPartnerBtn">Salvează</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Partner Type -->
+<div class="modal fade" id="partnerTypeModal" tabindex="-1" aria-labelledby="partnerTypeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="partnerTypeForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="partnerTypeModalLabel">Tip Partener</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="partner_type_code_type" class="form-label">Cod Tip</label>
+            <input type="text" class="form-control" name="partner_type_code" id="partner_type_code_type" required>
+          </div>
+          <div class="mb-3">
+            <label for="journal_code_type" class="form-label">Cod Jurnal</label>
+            <input type="text" class="form-control" name="journal_code" id="journal_code_type" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="submitPartnerTypeBtn">Salvează</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

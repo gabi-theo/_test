@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Erori Aplicație</h2>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-sm align-middle text-nowrap">
+            <thead class="table-light">
+              <tr>
+                <th>Data</th>
+                <th>Logger</th>
+                <th>Level</th>
+                <th>Mesaj</th>
+                <th>Vizualizat</th>
+                <th class="text-end">Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="errorsTableBody">
+              <tr><td colspan="6" class="text-center">Se încarcă...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between mt-3" id="errorPagination"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal pentru detalii eroare -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Detalii Eroare</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Logger:</strong> <span id="modalLogger"></span></p>
+          <p><strong>Nivel:</strong> <span id="modalLevel"></span></p>
+          <p><strong>Data:</strong> <span id="modalDate"></span></p>
+          <p><strong>Mesaj:</strong></p>
+          <pre id="modalMessage" class="bg-light p-2"></pre>
+          <p><strong>Trace:</strong></p>
+          <pre id="modalTrace" class="bg-light p-2"></pre>
+        </div>
+      </div>
+    </div>
+  </div>

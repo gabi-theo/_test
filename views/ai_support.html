@@ -1,0 +1,185 @@
+<div class="container mt-5">
+    <h2 class="mb-4">
+        <i class="fas fa-robot me-2"></i>AI Support & Hedge Fund
+    </h2>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mb-4" id="aiTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="hedge-fund-tab" data-bs-toggle="tab"
+                    data-bs-target="#hedge-fund" type="button" role="tab">
+                <i class="fas fa-chart-line me-2"></i>AI Hedge Fund
+            </button>
+        </li>
+        <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link" id="support-tab" data-bs-toggle="tab"
+                    data-bs-target="#support" type="button" role="tab">
+                <i class="fas fa-headset me-2"></i>AI Support
+            </button>
+        </li> -->
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="aiTabsContent">
+        <!-- AI Hedge Fund Tab -->
+        <div class="tab-pane fade show active" id="hedge-fund" role="tabpanel">
+            <!-- Configuration Panel -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-cog me-2"></i>Configuration</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="hedgeFundForm">
+                                <div class="row">
+                                    <!-- Tickers -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="tickers" class="form-label">Stock Tickers</label>
+                                        <input type="text" class="form-control" id="tickers"
+                                               placeholder="AAPL,GOOGL,MSFT,TSLA"
+                                               value="AAPL,GOOGL,MSFT,TSLA">
+                                        <div class="form-text">Comma-separated list of stock symbols</div>
+                                    </div>
+
+                                    <!-- Initial Cash -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="initialCash" class="form-label">Initial Cash ($)</label>
+                                        <input type="number" class="form-control" id="initialCash"
+                                               value="100000" min="1000" step="1000">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Start Date -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="startDate" class="form-label">Start Date</label>
+                                        <input type="date" class="form-control" id="startDate">
+                                    </div>
+
+                                    <!-- End Date -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="endDate" class="form-label">End Date</label>
+                                        <input type="date" class="form-control" id="endDate">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Model Provider -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="modelProvider" class="form-label">AI Model Provider</label>
+                                        <select class="form-select" id="modelProvider">
+                                            <option value="OpenAI">OpenAI</option>
+                                            <option value="Anthropic">Anthropic</option>
+                                            <option value="Groq">Groq</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Model Name -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="modelName" class="form-label">Model Name</label>
+                                        <select class="form-select" id="modelName">
+                                            <option value="gpt-4o">GPT-4o</option>
+                                            <option value="gpt-4">GPT-4</option>
+                                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Agents Selection -->
+                                <div class="mb-3">
+                                    <label class="form-label">AI Agents</label>
+                                    <div id="agentsContainer" class="border rounded p-3">
+                                        <div class="text-center text-muted">
+                                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                                            Loading available agents...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-success" id="runAnalysisBtn">
+                                        <i class="fas fa-play me-2"></i>Run Analysis
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="stopAnalysisBtn" disabled>
+                                        <i class="fas fa-stop me-2"></i>Stop Analysis
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Panel -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Status</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="statusContainer">
+                                <div class="text-center text-muted">
+                                    <i class="fas fa-clock fa-2x mb-2"></i>
+                                    <p>Ready to run analysis</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Panel -->
+            <div class="card shadow-sm mb-4" id="progressPanel" style="display: none;">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Analysis Progress</h5>
+                </div>
+                <div class="card-body">
+                    <div id="progressContainer">
+                        <!-- Progress updates will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="card shadow-sm" id="resultsPanel" style="display: none;">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Analysis Results</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h6>Investment Decisions</h6>
+                            <div id="decisionsContainer" class="border rounded p-3 mb-3">
+                                <!-- Investment decisions will be displayed here -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h6>Analyst Signals</h6>
+                            <div id="signalsContainer" class="border rounded p-3 mb-3">
+                                <!-- Analyst signals will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Support Tab -->
+        <!-- <div class="tab-pane fade" id="support" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-headset me-2"></i>AI Support Assistant</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center text-muted">
+                        <i class="fas fa-tools fa-3x mb-3"></i>
+                        <h5>AI Support Coming Soon</h5>
+                        <p>Advanced AI-powered support features will be available here.</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+

@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Conturi contabile - Mapări Saga</h2>
+
+    <div class="d-flex gap-2 mb-3">
+        <button class="btn btn-success" id="addAccountBtn">Adaugă mapare cont</button>
+        <button class="btn btn-outline-primary" id="downloadExcelBtn">Descarcă Template Excel</button>
+      
+        <label class="btn btn-outline-secondary mb-0">
+          Încarcă Excel
+          <input type="file" id="uploadExcelInput" accept=".xlsx" hidden>
+        </label>
+      </div>
+      
+  
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Cont SAGA</th>
+              <th>Cont Principal</th>
+              <th class="text-end">Acțiune</th>
+            </tr>
+          </thead>
+          <tbody id="accountMappingTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="accountMappingModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">Adaugă/Modifică Mapare Cont</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+          <form id="accountMappingForm">
+            <div class="mb-3">
+              <label for="account_saga" class="form-label">Cont SAGA</label>
+              <input type="text" class="form-control" name="account_saga" id="account_saga">
+            </div>
+            <div class="mb-3">
+              <label for="main_account" class="form-label">Cont Principal</label>
+              <input type="text" class="form-control" name="main_account" id="main_account" required>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary" id="submitBtn">Adaugă</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
