@@ -78,7 +78,7 @@
   }
   
   .sidebar-link {
-    @apply flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 group;
+    @apply flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200;
   }
   
   .sidebar-link.active {
