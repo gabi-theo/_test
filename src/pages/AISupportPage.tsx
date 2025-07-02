@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Select } from '../components/ui/Select'
 import { Badge } from '../components/ui/Badge'
-import { RobotIcon, PlayIcon, StopIcon } from '@heroicons/react/24/outline'
+import { CpuChipIcon, PlayIcon, StopIcon } from '@heroicons/react/24/outline'
 
 export function AISupportPage() {
   const [isRunning, setIsRunning] = useState(false)
@@ -32,7 +32,7 @@ export function AISupportPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-          <RobotIcon className="h-8 w-8 mr-3 text-primary-600" />
+          <CpuChipIcon className="h-8 w-8 mr-3 text-primary-600" />
           AI Support & Hedge Fund
         </h1>
         <p className="mt-1 text-sm text-gray-500">
@@ -194,7 +194,7 @@ export function AISupportPage() {
                 ) : (
                   <div className="space-y-3">
                     <div className="h-12 w-12 mx-auto bg-gray-100 rounded-full flex items-center justify-center">
-                      <RobotIcon className="h-6 w-6 text-gray-400" />
+                      <CpuChipIcon className="h-6 w-6 text-gray-400" />
                     </div>
                     <p className="text-sm text-gray-600">Gata pentru analiză</p>
                   </div>
