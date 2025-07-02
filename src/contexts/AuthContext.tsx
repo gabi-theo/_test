@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { User, AuthTokens } from '../types'
-import api from '../lib/api'
+import { apiService } from '../lib/api'
 
 interface AuthContextType {
   user: User | null
@@ -35,8 +35,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const token = localStorage.getItem('accessToken')
       if (token) {
         try {
-          const response = await api.get('/auth/user/')
-          setUser(response.data)
+          const userData = await apiService.auth.getUser()
+          setUser(userData)
         } catch (error) {
           localStorage.removeItem('accessToken')
           localStorage.removeItem('refreshToken')
@@ -50,17 +50,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const login = async (username: string, password: string) => {
     try {
-      const response = await api.post<AuthTokens>('/auth/login/', {
-        username,
-        password,
-      })
+      const tokens = await apiService.auth.login(username, password)
+      
+      localStorage.setItem('accessToken', tokens.access)
+      localStorage.setItem('refreshToken', tokens.refresh)
 
-      const { access, refresh } = response.data
-      localStorage.setItem('accessToken', access)
-      localStorage.setItem('refreshToken', refresh)
-
-      const userResponse = await api.get<User>('/auth/user/')
-      setUser(userResponse.data)
+      const userData = await apiService.auth.getUser()
+      setUser(userData)
     } catch (error) {
       throw new Error('Invalid credentials')
     }
